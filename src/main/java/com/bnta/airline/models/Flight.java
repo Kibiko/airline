@@ -22,10 +22,10 @@ public class Flight {
     @Column
     private int capacity;
 
-    @Column
+    @Column(name = "departure_date")
     private LocalDate departureDate;
 
-    @Column
+    @Column(name = "departure_time")
     private LocalTime departureTime;
 
     @ManyToMany(mappedBy = "flights")

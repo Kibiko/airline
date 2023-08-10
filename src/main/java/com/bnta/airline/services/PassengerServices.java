@@ -35,10 +35,12 @@ public class PassengerServices {
                 passengerDTO.getPhoneNumber(),
                 passengerDTO.getEmail()
         );
-        List<Long> flightIds = passengerDTO.getFlightIds();
-        for (Long flightId : flightIds){
-            Flight flight = flightRepository.findById(flightId).get();
-            passenger.addFlight(flight);
+        if(passengerDTO.getFlightIds() != null) {
+            List<Long> flightIds = passengerDTO.getFlightIds();
+            for (Long flightId : flightIds) {
+                Flight flight = flightRepository.findById(flightId).get();
+                passenger.addFlight(flight);
+            }
         }
         passengerRepository.save(passenger);
         return passenger;

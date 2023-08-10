@@ -51,8 +51,8 @@ public class PassengerController {
         if(bookedPassenger.isPresent()){
             for (Long flightId : passengerDTO.getFlightIds()) { //if present then loop through List<Long> flightIds
                 Flight flight = flightServices.findFlight(flightId).get();
-                if (flight.getPassengers().size() == flight.getCapacity()) { //check capacity
-                    return new ResponseEntity<>(null, HttpStatus.CONFLICT); //fail if capacity full
+                if (flight.getPassengers().size() == flight.getCapacity() || bookedPassenger.get().getFlights().contains(flight)) { //check capacity and if passenger is already on flight
+                    return new ResponseEntity<>(null, HttpStatus.CONFLICT); //fail if capacity full or already booked
                 } else {
                     passengerServices.addFlightToPassenger(passengerDTO, id); //else add flight to passenger
                 }
