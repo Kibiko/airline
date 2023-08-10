@@ -16,16 +16,16 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String destination;
 
-    @Column
+    @Column(nullable = false)
     private int capacity;
 
-    @Column(name = "departure_date")
+    @Column(name = "departure_date", nullable = false)
     private LocalDate departureDate;
 
-    @Column(name = "departure_time")
+    @Column(name = "departure_time", nullable = false)
     private LocalTime departureTime;
 
     @ManyToMany(mappedBy = "flights")
